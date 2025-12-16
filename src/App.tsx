@@ -1,21 +1,18 @@
-import { useState } from "react";
-import viteLogo from "/vite.svg";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
+import { HomePage } from "./pages/home";
+import { PageEins } from "./pages/eins";
+import { PageZwei } from "./pages/zwei";
+import viteLogo from "/vite.svg";
 import { usePostHog } from "@posthog/react";
+import { useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
   const posthog = usePostHog();
 
-  function increaseCount() {
-    posthog?.capture("clicked_increase_count");
-    setCount(count + 1);
-  }
-
-  function resetCount() {
-    posthog?.capture("clicked_reset_count");
-    setCount(0);
-  }
+  useEffect(() => {
+    posthog?.capture("initial_page_load");
+  }, []);
 
   return (
     <>
@@ -26,14 +23,18 @@ function App() {
         <p>प्रकाश : प्रकाश कहाँ छ र ?</p>
       </div>
 
-      <h1>count is {count}</h1>
-      <div className="card">
-        <div className="cta-wrapper">
-          <button onClick={increaseCount}>increase count</button>
+      <BrowserRouter>
+        <nav>
+          <Link to="/">Home</Link> | <Link to="/eins">Eins</Link> |{" "}
+          <Link to="/zwei">Zwei</Link>
+        </nav>
 
-          <button onClick={resetCount}>reset count</button>
-        </div>
-      </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/eins" element={<PageEins />} />
+          <Route path="/zwei" element={<PageZwei />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
