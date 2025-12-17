@@ -2,7 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { HomePage } from "./pages/home";
 import { PageOne } from "./pages/one";
-import { PageTwo } from "./pages/zwei";
+import { PageTwo } from "./pages/two";
 import viteLogo from "/vite.svg";
 import { usePostHog } from "@posthog/react";
 import { useEffect } from "react";
