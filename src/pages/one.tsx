@@ -1,12 +1,12 @@
 import { usePostHog } from "@posthog/react";
 import { useEffect } from "react";
 
-export const PageZwei = () => {
+export const PageOne = () => {
   const posthog = usePostHog();
 
   useEffect(() => {
-    posthog?.capture("zwei_page_load");
+    posthog?.capture("page_one_loaded");
   }, []);
 
-  return <div>Page zwei</div>;
+  return <div>Page One</div>;
 };

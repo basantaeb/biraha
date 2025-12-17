@@ -6,7 +6,7 @@ export const HomePage = () => {
   const posthog = usePostHog();
 
   useEffect(() => {
-    posthog?.capture("home_page_load");
+    posthog?.capture("home_page_loaded");
   }, []);
 
   function increaseCount() {
